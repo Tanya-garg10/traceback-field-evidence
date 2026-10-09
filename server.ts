@@ -126,8 +126,8 @@ function getCuratedReferenceSources(
         id: 'src-ebird-1',
         sourceName: 'eBird — Cornell Lab of Ornithology',
         domain: 'ebird.org',
-        title: 'Indian Roller (Coracias benghalensis) — Identification & Life History',
-        url: 'https://ebird.org/species/indrol',
+        title: 'Indian/Indochinese Roller - eBird',
+        url: 'https://ebird.org/species/indrol1',
         date: 'Updated Mar 14, 2026',
         isoDate: '2026-03-14',
         excerpt:
@@ -140,7 +140,7 @@ function getCuratedReferenceSources(
         id: 'src-birdlife-2',
         sourceName: 'BirdLife International DataZone',
         domain: 'datazone.birdlife.org',
-        title: 'Species Factsheet: Coracias benghalensis (Indian Roller)',
+        title: 'Indian Roller Coracias benghalensis Species Factsheet',
         url: 'https://datazone.birdlife.org/species/factsheet/indian-roller-coracias-benghalensis',
         date: 'Published Jan 22, 2026',
         isoDate: '2026-01-22',
@@ -194,9 +194,9 @@ function getCuratedReferenceSources(
         {
           id: 'src-usda-1',
           sourceName: 'USDA PLANTS Database',
-          domain: 'plants.usda.gov',
-          title: 'Asclepias speciosa Torr. — Showy Milkweed Plant Guide',
-          url: 'https://plants.usda.gov/home/plantProfile?symbol=ASSP',
+          domain: 'plants.sc.egov.usda.gov',
+          title: 'Asclepias speciosa Torr. — showy milkweed',
+          url: 'https://plants.sc.egov.usda.gov/home/plantProfile?symbol=ASSP',
           date: 'Updated Apr 10, 2026',
           isoDate: '2026-04-10',
           excerpt:
@@ -246,10 +246,10 @@ function getCuratedReferenceSources(
       sources: [
         {
           id: 'src-mycobank-1',
-          sourceName: 'MycoBank Fungal Databases',
-          domain: 'mycobank.org',
-          title: 'Cantharellus formosus — Pacific Golden Chanterelle',
-          url: 'https://www.mycobank.org/',
+          sourceName: 'Beaty Biodiversity Museum - UBC',
+          domain: 'explore.beatymuseum.ubc.ca',
+          title: 'Cantharellus formosus — Pacific golden chanterelle',
+          url: 'https://explore.beatymuseum.ubc.ca/mushroomsup/C_formosus.html',
           date: 'Updated Aug 11, 2026',
           isoDate: '2026-08-11',
           excerpt:
@@ -260,10 +260,10 @@ function getCuratedReferenceSources(
         },
         {
           id: 'src-inat-fungi-2',
-          sourceName: 'iNaturalist Mycology Taxon Reference',
-          domain: 'inaturalist.org',
-          title: 'Cantharellus formosus vs. Omphalotus olivascens (False Gills Identification)',
-          url: 'https://www.inaturalist.org/taxa/49615-Cantharellus-formosus',
+          sourceName: 'E-Flora BC Atlas',
+          domain: 'linnet.geog.ubc.ca',
+          title: 'Cantharellus formosus Corner - Pacific golden chanterelle',
+          url: 'https://linnet.geog.ubc.ca/Atlas/Atlas.aspx?sciname=Cantharellus+formosus',
           date: 'Verified Sep 29, 2026',
           isoDate: '2026-09-29',
           excerpt:
@@ -277,10 +277,10 @@ function getCuratedReferenceSources(
         },
         {
           id: 'src-fs-3',
-          sourceName: 'U.S. Forest Service PNW Research Station',
-          domain: 'fs.usda.gov',
-          title: 'Ecology and Management of Commercially Harvested Chanterelle Mushrooms',
-          url: 'https://www.fs.usda.gov/pnw/',
+          sourceName: 'Wikipedia',
+          domain: 'en.wikipedia.org',
+          title: 'Cantharellus formosus - Pacific golden chanterelle',
+          url: 'https://en.wikipedia.org/wiki/Cantharellus_formosus',
           date: 'Published Nov 04, 2023',
           isoDate: '2023-11-04',
           excerpt:
