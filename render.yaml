@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: traceback
+    env: node
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FEATHERLESS_API_KEY
+        sync: false
+      - key: SERPAPI_KEY
+        sync: false
+      - key: OLLAMA_BASE_URL
+        value: http://localhost:11434
+      - key: OPEN_WEIGHT_MODEL
+        value: gemma3:4b
+      - key: APP_URL
+        sync: false

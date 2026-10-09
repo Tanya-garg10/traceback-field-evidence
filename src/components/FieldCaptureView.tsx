@@ -67,6 +67,9 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
   const [isLocating, setIsLocating] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [showCameraModal, setShowCameraModal] = useState<boolean>(false);
+  const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
 
   const handleSelectPreset = (preset: FieldPreset) => {
     setCategory(preset.category);
@@ -97,6 +100,50 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
       setImageError('Could not read the selected photo file. Please try another image.');
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleStartCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment' },
+      });
+      setCameraStream(stream);
+      setShowCameraModal(true);
+      setImageError(null);
+
+      // Set video source after a small delay to ensure the video ref is available
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      }, 100);
+    } catch (err) {
+      console.error('Camera access error:', err);
+      setImageError('Could not access camera. Please check permissions or use Upload Photo instead.');
+    }
+  };
+
+  const handleCapturePhoto = () => {
+    if (!videoRef.current) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = videoRef.current.videoWidth;
+    canvas.height = videoRef.current.videoHeight;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.drawImage(videoRef.current, 0, 0);
+      const dataUrl = canvas.toDataURL('image/jpeg');
+      setImageUrl(dataUrl);
+    }
+    handleCloseCamera();
+  };
+
+  const handleCloseCamera = () => {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(track => track.stop());
+      setCameraStream(null);
+    }
+    setShowCameraModal(false);
   };
 
   const handleDetectLocation = () => {
@@ -323,11 +370,11 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
             </p>
           )}
 
+          {/* Gallery / file upload — no capture attribute so it opens the file picker */}
           <input
             ref={fileInputRef}
             type="file"
             accept="image/*"
-            capture="environment"
             onChange={handleFileChange}
             className="hidden"
           />
@@ -343,7 +390,7 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => fileInputRef.current?.click()}
+              onClick={handleStartCamera}
               className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-[#D5CFC2] bg-[#F7F5F0] text-xs font-semibold text-[#1C241E] hover:bg-[#EBE6DC] transition-colors cursor-pointer whitespace-nowrap"
             >
               <Camera className="w-3.5 h-3.5 text-[#1E4620]" />
@@ -478,6 +525,40 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
           </div>
         </div>
       </form>
+
+      {/* Camera Modal */}
+      {showCameraModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-4 max-w-2xl w-full space-y-4">
+            <div className="relative aspect-video bg-black rounded-xl overflow-hidden">
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={handleCapturePhoto}
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#1E4620] text-white text-sm font-semibold hover:bg-[#163518] transition-colors cursor-pointer"
+              >
+                <Camera className="w-4 h-4" />
+                <span>Capture Photo</span>
+              </button>
+              <button
+                type="button"
+                onClick={handleCloseCamera}
+                className="px-6 py-3 rounded-xl bg-[#F7F5F0] text-[#1C241E] text-sm font-semibold hover:bg-[#EBE6DC] transition-colors cursor-pointer border border-[#D5CFC2]"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

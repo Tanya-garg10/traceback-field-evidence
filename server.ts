@@ -400,7 +400,7 @@ async function startServer() {
   ensurePwaIcons();
 
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   app.use(express.json({ limit: '10mb' }));
 
@@ -433,7 +433,70 @@ async function startServer() {
   app.post('/api/local-ai-analyze', async (req, res) => {
     const { observation, category, modelId } = req.body || {};
     const ollamaUrl = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
+    const featherlessKey = process.env.FEATHERLESS_API_KEY || '';
 
+    // Try Featherless API first if key is available
+    if (featherlessKey && featherlessKey.trim() !== '' && featherlessKey !== 'MY_FEATHERLESS_API_KEY') {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 30000);
+
+        const response = await fetch('https://api.featherless.ai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${featherlessKey}`,
+          },
+          body: JSON.stringify({
+            model: modelId || process.env.OPEN_WEIGHT_MODEL || 'featherless/qwen2.5-7b-instruct',
+            messages: [
+              {
+                role: 'system',
+                content: 'You are a field identification expert. Analyze observations and return structured JSON data.',
+              },
+              {
+                role: 'user',
+                content: `Analyze this outdoor field observation (${category}): "${observation}". Return JSON with possibleIdentification, confidence (0-100), characteristics (array), and searchQueries (array of 3 strings).`,
+              },
+            ],
+            temperature: 0.7,
+            max_tokens: 500,
+          }),
+          signal: controller.signal,
+        });
+        clearTimeout(timeout);
+
+        if (response.ok) {
+          const data = await response.json();
+          const content = data.choices?.[0]?.message?.content;
+          if (content) {
+            try {
+              const parsed = JSON.parse(content);
+              return res.json({
+                source: 'featherless_api',
+                data: parsed,
+              });
+            } catch {
+              // If parsing fails, return the raw content
+              return res.json({
+                source: 'featherless_api',
+                data: {
+                  possibleIdentification: 'Analysis from Featherless',
+                  confidence: 75,
+                  characteristics: [content],
+                  searchQueries: [observation],
+                },
+              });
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Featherless API error:', err);
+        // Fall through to next option
+      }
+    }
+
+    // Try Ollama local daemon
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 1800);
@@ -568,7 +631,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`TraceBack server running on http://localhost:${PORT}`);
+    console.log(`TraceBack server running on port ${PORT}`);
   });
 }
 

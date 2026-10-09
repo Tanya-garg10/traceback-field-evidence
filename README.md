@@ -24,7 +24,7 @@ Describe what you saw in the field — TraceBack analyzes it using a local open-
 | Frontend   | React 19, TypeScript, Tailwind CSS v4       |
 | Backend    | Express.js, tsx (TypeScript runner)         |
 | Build tool | Vite                                        |
-| AI         | `@google/genai` (Gemini), Ollama (local)    |
+| AI         | Featherless (open-weight), Ollama (local)   |
 | Search     | SerpApi (optional, for live web evidence)   |
 
 ---
@@ -34,7 +34,7 @@ Describe what you saw in the field — TraceBack analyzes it using a local open-
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or later)
-- A [Gemini API key](https://aistudio.google.com/app/apikey) *(for cloud AI analysis)*
+- A [Featherless API key](https://featherless.ai/) *(for cloud AI analysis)*
 - [Ollama](https://ollama.com/) *(optional, for local open-weight model inference)*
 - A [SerpApi key](https://serpapi.com/) *(optional, for live web evidence)*
 
@@ -57,8 +57,8 @@ cp .env.example .env.local
 Edit `.env.local`:
 
 ```env
-# Required for Gemini AI analysis
-GEMINI_API_KEY="your_gemini_api_key_here"
+# Required for AI analysis
+FEATHERLESS_API_KEY="your_featherless_api_key_here"
 
 # Optional: SerpApi key for live web evidence search
 SERPAPI_KEY="your_serpapi_key_here"
@@ -129,7 +129,7 @@ traceback/
 
 | Variable            | Required | Description                                           |
 |---------------------|----------|-------------------------------------------------------|
-| `GEMINI_API_KEY`    | ✅ Yes   | Google Gemini API key for AI-powered identification   |
+| `FEATHERLESS_API_KEY` | ✅ Yes  | Featherless API key for open-weight cloud models     |
 | `SERPAPI_KEY`       | ❌ No    | SerpApi key for live Google Search evidence           |
 | `OLLAMA_BASE_URL`   | ❌ No    | Ollama daemon URL (default: `http://localhost:11434`) |
 | `OPEN_WEIGHT_MODEL` | ❌ No    | Ollama model name (default: `gemma3:4b`)              |
