@@ -4,8 +4,6 @@
 
 Describe what you saw in the field — TraceBack analyzes it using a local open-weight model (Ollama) or Gemini AI, then cross-references your hypothesis against authoritative sources like eBird, GBIF, iNaturalist, IUCN, and USDA PLANTS.
 
----
-
 ## ✨ Features
 
 - 🤖 **AI-powered identification** — Uses Gemini or a local Ollama model (Gemma, Llama, Qwen) to form an identification hypothesis from your field observation
@@ -14,8 +12,6 @@ Describe what you saw in the field — TraceBack analyzes it using a local open-
 - ⚡ **Contradiction detection** — Automatically flags conflicting habitat or trait claims across sources
 - 📱 **PWA-ready** — Installable as a Progressive Web App with offline-capable icons
 - 🖥️ **Local AI support** — Route inference to a local Ollama daemon (no API key needed) for privacy
-
----
 
 ## 🛠️ Tech Stack
 
@@ -26,8 +22,6 @@ Describe what you saw in the field — TraceBack analyzes it using a local open-
 | Build tool | Vite                                        |
 | AI         | `@google/genai` (Gemini), Ollama (local)    |
 | Search     | SerpApi (optional, for live web evidence)   |
-
----
 
 ## 🚀 Getting Started
 
@@ -81,8 +75,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
-
 ## 🧠 How It Works
 
 1. **Describe your observation** — Enter what you saw: a bird perched on a wire, a wildflower, a mushroom, or an old stone marker.
@@ -90,8 +82,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 3. **Evidence tracing** — The backend calls SerpApi (if configured) or falls back to curated reference sources from eBird, GBIF, BirdLife, USDA, iNaturalist, etc.
 4. **Contradiction analysis** — Sources are compared for conflicting habitat or morphological claims, and conflicts are surfaced clearly.
 5. **Results** — You get a confidence-scored identification with sourced field evidence you can explore.
-
----
 
 ## 📁 Project Structure
 
@@ -111,8 +101,6 @@ traceback/
 └── .env.example       # Environment variable template
 ```
 
----
-
 ## 📜 Available Scripts
 
 | Command         | Description                              |
@@ -123,8 +111,6 @@ traceback/
 | `npm run lint`  | TypeScript type-check (no emit)          |
 | `npm run clean` | Remove `dist/` and `server.js` artifacts |
 
----
-
 ## 🔑 Environment Variables
 
 | Variable            | Required | Description                                           |
@@ -134,8 +120,6 @@ traceback/
 | `OLLAMA_BASE_URL`   | ❌ No    | Ollama daemon URL (default: `http://localhost:11434`) |
 | `OPEN_WEIGHT_MODEL` | ❌ No    | Ollama model name (default: `gemma3:4b`)              |
 | `APP_URL`           | ❌ No    | Public URL of the hosted app                          |
-
----
 
 ## 📄 License
 
