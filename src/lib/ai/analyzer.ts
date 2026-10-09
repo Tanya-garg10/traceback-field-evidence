@@ -57,7 +57,7 @@ export const FIELD_PRESETS: FieldPreset[] = [
     label: 'Unfamiliar Lakeside Bird (Demo)',
     category: 'Bird',
     location: 'Ranganathittu Lake Trail, Karnataka',
-    imageUrl: '/src/assets/images/indian_roller_bird_1791465231205.jpg',
+    imageUrl: '/assets/images/indian_roller_bird_1791465231205.jpg',
     observationText:
       'I saw this medium-sized bird perched near a lake. It had striking bright blue wings, an orange-brown chest, and a stout dark beak.',
     screenFreeMinutes: 38,
@@ -67,7 +67,7 @@ export const FIELD_PRESETS: FieldPreset[] = [
     label: 'Star-Clustered Meadow Plant',
     category: 'Plant',
     location: 'Sunlit Ridge Meadow Trail',
-    imageUrl: '/src/assets/images/monarch_milkweed_plant_1791465242293.jpg',
+    imageUrl: '/assets/images/monarch_milkweed_plant_1791465242293.jpg',
     observationText:
       'Found along an open sunny trail. Spherical clusters of dusty rose-pink five-pointed star flowers with thick velvety sage-green leaves and milky sap.',
     screenFreeMinutes: 46,
@@ -77,7 +77,7 @@ export const FIELD_PRESETS: FieldPreset[] = [
     label: 'Carved Lichen Trail Marker',
     category: 'Landmark',
     location: 'Old Towpath Woodland Corridor',
-    imageUrl: '/src/assets/images/historic_stone_milepost_1791465256115.jpg',
+    imageUrl: '/assets/images/historic_stone_milepost_1791465256115.jpg',
     observationText:
       'Weathered sandstone post beside the forest canal path with chiseled Roman numerals and pale green crustose lichen covering the upper face.',
     screenFreeMinutes: 54,
@@ -87,7 +87,7 @@ export const FIELD_PRESETS: FieldPreset[] = [
     label: 'Apricot Ridged Forest Fungi',
     category: 'Other',
     location: 'Damp Douglas-Fir Moss Floor',
-    imageUrl: '/src/assets/images/golden_chanterelle_fungi_1791465269342.jpg',
+    imageUrl: '/assets/images/golden_chanterelle_fungi_1791465269342.jpg',
     observationText:
       'Growing in damp emerald moss under conifers. Warm golden-apricot wavy funnel cap with forked gill-like ridges running down a solid stem.',
     screenFreeMinutes: 62,

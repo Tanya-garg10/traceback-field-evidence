@@ -15,13 +15,7 @@ Describe what you saw in the field — TraceBack analyzes it using a local open-
 
 ## 🛠️ Tech Stack
 
-| Layer      | Technology                                  |
-|------------|---------------------------------------------|
-| Frontend   | React 19, TypeScript, Tailwind CSS v4       |
-| Backend    | Express.js, tsx (TypeScript runner)         |
-| Build tool | Vite                                        |
-| AI         | Featherless (open-weight), Ollama (local)   |
-| Search     | SerpApi (optional, for live web evidence)   |
+**Tech Stack:** React, TypeScript, Tailwind CSS, Express.js, Vite, Featherless API, Ollama (Gemma 3 open-weight AI model), and SerpApi.
 
 ## 🚀 Getting Started
 

@@ -60,7 +60,7 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
   );
   const [location, setLocation] = useState<string>('Lake observation · Ranganathittu Trail');
   const [imageUrl, setImageUrl] = useState<string>(
-    '/src/assets/images/indian_roller_bird_1791465231205.jpg'
+    '/assets/images/indian_roller_bird_1791465231205.jpg'
   );
   const [imageError, setImageError] = useState<string | null>(null);
   const [screenFreeMinutes, setScreenFreeMinutes] = useState<number>(38);
