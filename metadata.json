@@ -1,0 +1,8 @@
+{
+  "name": "TraceBack: Field Evidence Explorer",
+  "description": "Explore the natural world by capturing observations and using local AI to trace evidence back to reality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

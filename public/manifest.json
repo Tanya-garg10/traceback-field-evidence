@@ -1,0 +1,31 @@
+{
+  "id": "/",
+  "name": "TraceBack: Field Evidence Explorer",
+  "short_name": "TraceBack",
+  "description": "Explore the natural world by capturing observations and using local AI to trace evidence back to reality.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#F7F5F0",
+  "background_color": "#F7F5F0",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
