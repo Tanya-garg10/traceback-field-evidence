@@ -626,13 +626,10 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
+    // Serve static files
     app.use(express.static(distPath));
-    // SPA fallback - handle non-API, non-file routes
-    app.get('*', (req, res, next) => {
-      // Skip if it's an API route or has a file extension
-      if (req.path.startsWith('/api') || req.path.includes('.')) {
-        return next();
-      }
+    // SPA fallback - only for routes without extensions (client-side routing)
+    app.get(/^(?!\/api|.*\.).+$/, (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
