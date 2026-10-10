@@ -109,7 +109,7 @@ export const LandingView: React.FC<LandingViewProps> = ({
             <div className="bg-white rounded-3xl border border-[#E2DDD2] overflow-hidden shadow-xs">
               <div className="aspect-16/9 w-full bg-[#EBE6DC] relative overflow-hidden">
                 <img
-                  src="/src/assets/images/hero_field_exploration_1791465216180.jpg"
+                  src="/assets/images/hero_field_exploration_1791465216180.jpg"
                   alt="Botanical field notebook and brass compass on a sunlit woodland trail"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
@@ -130,7 +130,7 @@ export const LandingView: React.FC<LandingViewProps> = ({
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3.5">
                     <img
-                      src="/src/assets/images/indian_roller_bird_1791465231205.jpg"
+                      src="/assets/images/indian_roller_bird_1791465231205.jpg"
                       alt="Indian Roller bird"
                       referrerPolicy="no-referrer"
                       className="w-14 h-14 rounded-xl object-cover border border-[#E2DDD2] shrink-0"
