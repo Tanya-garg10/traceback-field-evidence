@@ -626,12 +626,7 @@ async function startServer() {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      // Don't intercept requests with file extensions (let static middleware handle them)
-      if (req.path.includes('.')) {
-        res.sendFile(path.join(distPath, req.path));
-      } else {
-        res.sendFile(path.join(distPath, 'index.html'));
-      }
+      res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 
