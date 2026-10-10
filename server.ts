@@ -404,6 +404,7 @@ async function startServer() {
 
   app.use(express.json({ limit: '10mb' }));
 
+  // API routes - must be defined BEFORE static file serving
   app.get('/api/config-status', async (_req, res) => {
     const rawKey = process.env.SERPAPI_KEY || '';
     const serpApiConfigured = Boolean(rawKey && rawKey.trim() !== '' && rawKey !== 'MY_SERPAPI_KEY');
@@ -616,6 +617,7 @@ async function startServer() {
     }
   });
 
+  // Static file serving and SPA fallback - must be AFTER all API routes
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
       server: { middlewareMode: true },
