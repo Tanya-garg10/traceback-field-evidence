@@ -627,7 +627,12 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
+    // SPA fallback - handle non-API, non-file routes
+    app.get('*', (req, res, next) => {
+      // Skip if it's an API route or has a file extension
+      if (req.path.startsWith('/api') || req.path.includes('.')) {
+        return next();
+      }
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
