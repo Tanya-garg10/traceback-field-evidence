@@ -113,6 +113,12 @@ export const LandingView: React.FC<LandingViewProps> = ({
                   alt="Botanical field notebook and brass compass on a sunlit woodland trail"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src.includes('/src/assets/images/')) {
+                      target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent flex items-end p-6">
                   <div className="text-white space-y-1">
@@ -134,6 +140,12 @@ export const LandingView: React.FC<LandingViewProps> = ({
                       alt="Indian Roller bird"
                       referrerPolicy="no-referrer"
                       className="w-14 h-14 rounded-xl object-cover border border-[#E2DDD2] shrink-0"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.includes('/src/assets/images/')) {
+                          target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                        }
+                      }}
                     />
                     <div>
                       <div className="flex items-center gap-2 text-xs text-[#545E56]">

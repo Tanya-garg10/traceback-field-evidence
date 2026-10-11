@@ -175,6 +175,12 @@ export const FieldJournalView: React.FC<FieldJournalViewProps> = ({
                       alt={exp.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.includes('/src/assets/images/')) {
+                          target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                        }
+                      }}
                     />
                   </div>
 

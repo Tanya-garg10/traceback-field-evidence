@@ -230,6 +230,12 @@ export const EvidenceExplorerView: React.FC<EvidenceExplorerViewProps> = ({
                 alt={exploration.title}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src.includes('/src/assets/images/')) {
+                    target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                  }
+                }}
               />
             </div>
             <div className="p-6 space-y-3">

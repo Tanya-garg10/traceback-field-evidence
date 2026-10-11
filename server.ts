@@ -626,8 +626,26 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
-    // Serve static files
+    const publicPath = path.join(process.cwd(), 'public');
+    const srcAssetsPath = path.join(process.cwd(), 'src', 'assets');
+
+    // Serve static files from production build dist folder
     app.use(express.static(distPath));
+
+    // Fallback serving directly from public directory
+    if (fs.existsSync(publicPath)) {
+      app.use(express.static(publicPath));
+    }
+
+    // Support legacy cached paths (/src/assets/...) for browsers with older cached data
+    app.use('/src/assets', express.static(path.join(distPath, 'assets')));
+    if (fs.existsSync(publicPath)) {
+      app.use('/src/assets', express.static(path.join(publicPath, 'assets')));
+    }
+    if (fs.existsSync(srcAssetsPath)) {
+      app.use('/src/assets', express.static(srcAssetsPath));
+    }
+
     // SPA fallback - only for routes without extensions (client-side routing)
     app.get(/^(?!\/api|.*\.).+$/, (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));

@@ -320,6 +320,12 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
                     alt={preset.label}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src.includes('/src/assets/images/')) {
+                        target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                      }
+                    }}
                   />
                 </div>
                 <div className="min-w-0">
@@ -355,6 +361,12 @@ export const FieldCaptureView: React.FC<FieldCaptureViewProps> = ({
                 alt="Field observation capture"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src.includes('/src/assets/images/')) {
+                    target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                  }
+                }}
               />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-[#6B746C]">

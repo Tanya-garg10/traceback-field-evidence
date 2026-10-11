@@ -205,6 +205,12 @@ export const EvidencePassportModal: React.FC<EvidencePassportModalProps> = ({
                 alt={exploration.title}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src.includes('/src/assets/images/')) {
+                    target.src = target.src.replace('/src/assets/images/', '/assets/images/');
+                  }
+                }}
               />
             </div>
             <div className="p-4 space-y-2">

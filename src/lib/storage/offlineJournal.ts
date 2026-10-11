@@ -841,6 +841,22 @@ export async function syncExplorationsToIndexedDB(explorations: FieldExploration
   });
 }
 
+export function normalizeExploration(item: FieldExploration): FieldExploration {
+  if (!item || !item.imageUrl) return item;
+  let img = item.imageUrl;
+  if (img.startsWith('/src/assets/images/')) {
+    img = img.replace(/^\/src\/assets\/images\//, '/assets/images/');
+  }
+  return {
+    ...item,
+    imageUrl: img,
+  };
+}
+
+export function normalizeExplorations(items: FieldExploration[]): FieldExploration[] {
+  return items.map(normalizeExploration);
+}
+
 export async function loadExplorationsFromIndexedDB(): Promise<FieldExploration[] | null> {
   const db = await openTraceBackIDB();
   if (!db) return null;
@@ -851,7 +867,7 @@ export async function loadExplorationsFromIndexedDB(): Promise<FieldExploration[
       const req = store.getAll();
       req.onsuccess = () => {
         if (Array.isArray(req.result) && req.result.length > 0) {
-          resolve(req.result as FieldExploration[]);
+          resolve(normalizeExplorations(req.result as FieldExploration[]));
         } else {
           resolve(null);
         }
@@ -874,7 +890,17 @@ export function loadFieldJournal(): FieldExploration[] {
     }
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed) && parsed.length > 0) {
-      return parsed;
+      const normalized = normalizeExplorations(parsed);
+      const hadLegacy = parsed.some((p: any) => p?.imageUrl?.startsWith('/src/assets/images/'));
+      if (hadLegacy) {
+        try {
+          window.localStorage.setItem(JOURNAL_STORAGE_KEY, JSON.stringify(normalized));
+          void syncExplorationsToIndexedDB(normalized);
+        } catch {
+          // ignore
+        }
+      }
+      return normalized;
     }
     return INITIAL_SEED_EXPLORATIONS;
   } catch {
